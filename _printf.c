@@ -7,9 +7,9 @@
 int _printf(const char *format, ...)
 {
 	int sum = 0;
-	varlist ap;
+	char *i;
+	va_list ap;
 	char *c, *start;
-	par_t par = par_init;
 
 	va_start(ap, format);
 
@@ -19,28 +19,94 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (c = (char *)format; *c; c++)
 	{
-		init_par(&par, ap);
-		if (*p != '%')
+		//init_par(&par, ap);
+		if (*c != '%')
 		{
 			sum += _putchar(*c);
 			continue;
 		}
+
 		start = c;
 		c++;
-		while (get_flags(c, &par))
+		switch (*c)
 		{
-			p++;
+			case 'c':
+				*i = (char) va_arg(ap, int);
+				_putchar(*i);
+				sum++;
+				break;
+			case 's':
+				i = va_arg(ap, char *);
+				stringWriter(c, &sum);
+				break;
+			case 'i':
+				stringWriter(convert(va_arg(ap, int)), &sum);
+			default:
+				_putchar('%');
+				_putchar(*start);
 		}
-		c = get_width(c, &par, ap);
-		c = get_precision(c, &par, ap);
-		if (!get_modifier(c, &par))
-		p++;
-		if (!get_specifier(c))
-			sum += print(start, c, par.l_modifier || par.h_modifier ? c - 1 : 0);
-		else
-			sum += get_print(c, ap, &par);
 	}
-	_putchar(buff);
+
 	va_end(ap);
 	return (sum);
+}
+
+void stringWriter(char *c, int *sum)
+{
+	for (; *c != '\0'; c++)
+	{
+		_putchar(*c);
+		*sum += 1;
+	}
+}
+
+char *covert(int x)
+{
+	char *c;
+	int i = 0, negative = 0, temp;
+
+	if (x == 0)
+		return (char *) '0';
+
+	if(x < 0)
+	{
+		negative = 1;
+		x *= -1;
+	}
+
+	temp = x;
+
+	while (temp > 0)
+	{
+		temp /= 10;
+		i++;
+	}
+
+	c = malloc(sizeof(char) * (i + negative + 1));
+
+	i = 0;
+	while (x > 0)
+	{
+		c[i++] = (x % 10) + '0';
+		x /= 10;
+	}
+
+	if (negative)
+	{
+		c[i++] = '-';
+	}
+
+	reverseString(c, i);
+	return c;
+}
+
+void reverseString(char* str, int len) {
+	int i;
+	char temp;
+
+	for (i = 0; i < len / 2; i++) {
+		temp = str[i];
+		str[i] = str[len - i - 1];
+		str[len - i - 1] = temp;
+	}
 }
