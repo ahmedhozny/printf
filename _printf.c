@@ -1,13 +1,12 @@
 #include "main.h"
 /**
  * _printf- prints any function
- * @format:format strig
+ * @format: format strig
  * Return: bytes of char
  */
 int _printf(const char *format, ...)
 {
 	int sum = 0;
-	char *i;
 	va_list ap;
 	char *c, *start;
 
@@ -15,8 +14,9 @@ int _printf(const char *format, ...)
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
+	if ((format[0] == '%') && (format[1] == ' ') && !format[2])
 		return (-1);
+
 	for (c = (char *)format; *c; c++)
 	{
 		/*init_par(&par, ap);*/
@@ -31,15 +31,14 @@ int _printf(const char *format, ...)
 		switch (*c)
 		{
 			case 'c':
-				*i = (char) va_arg(ap, int);
-				_putchar(*i);
+				_putchar(va_arg(ap, int));
 				sum++;
 				break;
 			case 's':
-				i = va_arg(ap, char *);
-				stringWriter(c, &sum);
+				stringWriter(va_arg(ap, char *), &sum);
 				break;
 			case 'i':
+			case 'd':
 				stringWriter(convert(va_arg(ap, int)), &sum);
 				break;
 			default:
@@ -52,6 +51,11 @@ int _printf(const char *format, ...)
 	return (sum);
 }
 
+/**
+ * stringWriter -prints a string
+ * @c: character to print
+ * @sum: reference to sum
+ */
 void stringWriter(char *c, int *sum)
 {
 	for (; *c != '\0'; c++)
@@ -61,6 +65,12 @@ void stringWriter(char *c, int *sum)
 	}
 }
 
+/**
+ * convert -find the string that refer to the given integer
+ * @x: character to print
+ *
+ * Return: string representing x
+ */
 char *convert(int x)
 {
 	char *c;
@@ -98,9 +108,14 @@ char *convert(int x)
 	}
 
 	reverseString(c, i);
-	return c;
+	return (c);
 }
 
+/**
+ * reverseString -reverses a given string
+ * @str: pointer to a string
+ * @len: length of the given string
+ */
 void reverseString(char* str, int len) {
 	int i;
 	char temp;
