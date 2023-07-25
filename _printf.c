@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (c = (char *)format; *c; c++)
 	{
-		//init_par(&par, ap);
+		/*init_par(&par, ap);*/
 		if (*c != '%')
 		{
 			sum += _putchar(*c);
@@ -60,7 +60,7 @@ void stringWriter(char *c, int *sum)
 	}
 }
 
-char *covert(int x)
+char *convert(int x)
 {
 	char *c;
 	int i = 0, negative = 0, temp;
