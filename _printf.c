@@ -41,6 +41,7 @@ int _printf(const char *format, ...)
 				break;
 			case 'i':
 				stringWriter(convert(va_arg(ap, int)), &sum);
+				break;
 			default:
 				_putchar('%');
 				_putchar(*start);
