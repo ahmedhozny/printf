@@ -8,5 +8,5 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 void stringWriter(char *c, int *sum);
 char *convert(int x);
-void reverseString(char* str, int len);
+void reverseString(char *str, int len);
 #endif

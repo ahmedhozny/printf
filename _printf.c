@@ -82,9 +82,9 @@ char *convert(int x)
 	int i = 0, negative = 0, temp;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
-	if(x < 0)
+	if (x < 0)
 	{
 		negative = 1;
 		x *= -1;
@@ -121,11 +121,13 @@ char *convert(int x)
  * @str: pointer to a string
  * @len: length of the given string
  */
-void reverseString(char* str, int len) {
+void reverseString(char *str, int len)
+{
 	int i;
 	char temp;
 
-	for (i = 0; i < len / 2; i++) {
+	for (i = 0; i < len / 2; i++)
+	{
 		temp = str[i];
 		str[i] = str[len - i - 1];
 		str[len - i - 1] = temp;
