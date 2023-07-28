@@ -95,7 +95,7 @@ char *convertToOct(unsigned int x)
 	if (x == 0)
 		return (char *) '0';
 
-	n = countDigits(x, 7);
+	n = countDigits(x, 8);
 
 	c = malloc(sizeof(char) * (n + 1));
 	if (!c)
@@ -106,8 +106,8 @@ char *convertToOct(unsigned int x)
 
 	for (i = 0; i < n; i++)
 	{
-		c[n - i] = (x % 7) + '0';
-		x /= 7;
+		c[n - i] = (x % 8) + '0';
+		x /= 8;
 	}
 
 	return (c);
