@@ -39,11 +39,29 @@ int _printf(const char *format, ...)
 				break;
 			case 'i':
 			case 'd':
-				stringWriter(convert(va_arg(ap, int)), &sum);
+				stringWriter(convertNumber(va_arg(ap, int)), &sum);
 				break;
 			case '%':
 				_putchar('%');
 				sum++;
+				break;
+			case 'u':
+				stringWriter(convertUnsignedNum(va_arg(ap, unsigned int)), &sum);
+				break;
+			case 'o':
+				stringWriter(convertToOct(va_arg(ap, unsigned int)), &sum);
+				break;
+			case 'x':
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 0), &sum);
+				break;
+			case 'X':
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
+				break;
+			case 'S':
+				stringExactWriter(va_arg(ap, char *), &sum);
+				break;
+			case 'p':
+				stringWriter(convertToHex(va_arg(ap, int), 1), &sum);
 				break;
 			default:
 				_putchar(*start);
@@ -69,6 +87,9 @@ int _printf(const char *format, ...)
  */
 void stringWriter(char *c, int *sum)
 {
+	while (!*c)
+		c++;
+
 	for (; *c != '\0'; c++)
 	{
 		_putchar(*c);
@@ -77,13 +98,13 @@ void stringWriter(char *c, int *sum)
 }
 
 /**
- * convert -find the string that refer to the given integer
- * @x: character to print
- *
- * Return: string representing x
+ * stringWriter -prints a string
+ * @c: character to print
+ * @sum: reference to sum
  */
-char *convert(int x)
+void stringExactWriter(char *c, int *sum)
 {
+<<<<<<< HEAD
 	char *c;
 	int i = 0, negative = 0, temp;
 
@@ -112,9 +133,16 @@ char *convert(int x)
 		c[i++] = (x % 10) + '0';
 		x /= 10;
 	}
+=======
+	char *x = "\\x";
 
-	if (negative)
+	while (!*c)
+		c++;
+>>>>>>> 7ecc4ba0c17a443c5b561af62ddeb0a29ac5dc35
+
+	for (; *c != '\0'; c++)
 	{
+<<<<<<< HEAD
 		c[i++] = '-';
 	}
 
@@ -137,5 +165,16 @@ void reverseString(char *str, int len)
 		temp = str[i];
 		str[i] = str[len - i - 1];
 		str[len - i - 1] = temp;
+=======
+		if ((*c < 32) || (*c >= 127))
+		{
+			stringWriter(x, sum);
+			stringWriter(convertToHex(*c, 1), sum);
+			continue;
+		}
+
+		_putchar(*c);
+		*sum += 1;
+>>>>>>> 7ecc4ba0c17a443c5b561af62ddeb0a29ac5dc35
 	}
 }
