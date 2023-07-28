@@ -59,6 +59,10 @@ int _printf(const char *format, ...)
 				break;
 			case 'S':
 				stringExactWriter(va_arg(ap, char *), &sum);
+				break;
+			case 'p':
+				stringWriter(convertToHex(va_arg(ap, int), 1), &sum);
+				break;
 			default:
 				_putchar(*start);
 				_putchar(*c);

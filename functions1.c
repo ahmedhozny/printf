@@ -139,3 +139,4 @@ char *convertToHex(unsigned int x, int upper)
 
 	return (c);
 }
+
