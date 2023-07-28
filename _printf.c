@@ -50,6 +50,12 @@ int _printf(const char *format, ...)
 				_putchar(*c);
 				sum += 2;
 		}
+		while (get_flag(c, &par))
+		{
+			c++;
+		}
+		if (get_modif(c, &par))
+			c++;
 	}
 
 	va_end(ap);

@@ -7,15 +7,15 @@
  */
 void init_par(par_t *par, varlist ap)
 {
-	par->plus_flag = 0;
-	par->space_flag = 0;
-	par->hashtag_flag = 0;
-	par->zero_flag = 0;
-	par->minus_flag = 0;
+	par->plus = 0;
+	par->space = 0;
+	par->hashtag = 0;
+	par->zero = 0;
+	par->minus = 0;
 	par->width = 0;
 	par->precision = UNIT_MAX;
-	par->h_mod = 0;
-	par->l_mod = 0;
+	par->h_modif = 0;
+	par->l_modif = 0;
 	par->unsign = 0;
 	(void)ap;
 }
