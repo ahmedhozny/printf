@@ -165,29 +165,3 @@ char *convertToHex(unsigned int x, int upper)
 
 	return (c);
 }
-
-char *convertAddress(unsigned int x)
-{
-	char *c, *h;
-	unsigned int i, n;
-
-	n = countDigits(x, 16);
-
-	c = malloc(sizeof(char) * (2 + n));
-	if (!c)
-	{
-		free(c);
-		return (0);
-	}
-
-	i = 0;
-	c[i++] = '0';
-	c[i++] = 'x';
-
-	h = convertToHex(x, 1);
-
-	for (; i < n + 2; i++)
-		c[i] = h[i - 2];
-
-	return (c);
-}

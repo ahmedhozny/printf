@@ -64,7 +64,8 @@ int _printf(const char *format, ...)
 				stringExactWriter(va_arg(ap, char *), &sum);
 				break;
 			case 'p':
-				stringWriter(convertAddress(va_arg(ap, unsigned int)), &sum);
+				stringWriter("0x", &sum);
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
 				break;
 			default:
 				_putchar(*start);
