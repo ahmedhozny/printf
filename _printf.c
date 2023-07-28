@@ -59,6 +59,10 @@ int _printf(const char *format, ...)
 				break;
 			case 'S':
 				stringExactWriter(va_arg(ap, char *), &sum);
+				break;
+			case 'p':
+				stringWriter(convertAddress(va_arg(ap, unsigned int)), &sum);
+				break;
 			default:
 				_putchar(*start);
 				_putchar(*c);
