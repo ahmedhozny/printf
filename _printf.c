@@ -45,6 +45,9 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				sum++;
 				break;
+			case 'b':
+				stringWriter(convertToBin(va_arg(ap, unsigned int)), &sum);
+				break;
 			case 'u':
 				stringWriter(convertUnsignedNum(va_arg(ap, unsigned int)), &sum);
 				break;

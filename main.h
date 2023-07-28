@@ -16,5 +16,6 @@ char *convertUnsignedNum(unsigned int x);
 char *convertToOct(unsigned int x);
 char *convertToHex(unsigned int x, int upper);
 char *convertAddress(unsigned int x);
+char *convertToBin(unsigned int x);
 
 #endif
