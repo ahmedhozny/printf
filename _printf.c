@@ -39,11 +39,23 @@ int _printf(const char *format, ...)
 				break;
 			case 'i':
 			case 'd':
-				stringWriter(convert(va_arg(ap, int)), &sum);
+				stringWriter(convertNumber(va_arg(ap, int)), &sum);
 				break;
 			case '%':
 				_putchar('%');
 				sum++;
+				break;
+			case 'u':
+				stringWriter(convertUnsignedNum(va_arg(ap, unsigned int)), &sum);
+				break;
+			case 'o':
+				stringWriter(convertToOct(va_arg(ap, unsigned int)), &sum);
+				break;
+			case 'x':
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 0), &sum);
+				break;
+			case 'X':
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
 				break;
 			default:
 				_putchar(*start);
@@ -67,67 +79,5 @@ void stringWriter(char *c, int *sum)
 	{
 		_putchar(*c);
 		*sum += 1;
-	}
-}
-
-/**
- * convert -find the string that refer to the given integer
- * @x: character to print
- *
- * Return: string representing x
- */
-char *convert(int x)
-{
-	char *c;
-	int i = 0, negative = 0, temp;
-
-	if (x == 0)
-		return (char *) '0';
-
-	if(x < 0)
-	{
-		negative = 1;
-		x *= -1;
-	}
-
-	temp = x;
-
-	while (temp > 0)
-	{
-		temp /= 10;
-		i++;
-	}
-
-	c = malloc(sizeof(char) * (i + negative + 1));
-
-	i = 0;
-	while (x > 0)
-	{
-		c[i++] = (x % 10) + '0';
-		x /= 10;
-	}
-
-	if (negative)
-	{
-		c[i++] = '-';
-	}
-
-	reverseString(c, i);
-	return (c);
-}
-
-/**
- * reverseString -reverses a given string
- * @str: pointer to a string
- * @len: length of the given string
- */
-void reverseString(char* str, int len) {
-	int i;
-	char temp;
-
-	for (i = 0; i < len / 2; i++) {
-		temp = str[i];
-		str[i] = str[len - i - 1];
-		str[len - i - 1] = temp;
 	}
 }
