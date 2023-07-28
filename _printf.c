@@ -57,6 +57,8 @@ int _printf(const char *format, ...)
 			case 'X':
 				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
 				break;
+			case 'S':
+				stringExactWriter(va_arg(ap, char *), &sum);
 			default:
 				_putchar(*start);
 				_putchar(*c);
@@ -80,6 +82,32 @@ void stringWriter(char *c, int *sum)
 
 	for (; *c != '\0'; c++)
 	{
+		_putchar(*c);
+		*sum += 1;
+	}
+}
+
+/**
+ * stringWriter -prints a string
+ * @c: character to print
+ * @sum: reference to sum
+ */
+void stringExactWriter(char *c, int *sum)
+{
+	char *x = "\\x";
+
+	while (!*c)
+		c++;
+
+	for (; *c != '\0'; c++)
+	{
+		if ((*c < 32) || (*c >= 127))
+		{
+			stringWriter(x, sum);
+			stringWriter(convertToHex(*c, 1), sum);
+			continue;
+		}
+
 		_putchar(*c);
 		*sum += 1;
 	}

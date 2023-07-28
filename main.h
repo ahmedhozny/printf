@@ -7,6 +7,7 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 void stringWriter(char *c, int *sum);
+void stringExactWriter(char *c, int *sum);
 void reverseString(char* str, int len);
 int countNumbers(unsigned int x);
 int countDigits(unsigned int x, unsigned int base);
