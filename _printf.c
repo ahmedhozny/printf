@@ -75,6 +75,9 @@ int _printf(const char *format, ...)
  */
 void stringWriter(char *c, int *sum)
 {
+	while (!*c)
+		c++;
+
 	for (; *c != '\0'; c++)
 	{
 		_putchar(*c);
