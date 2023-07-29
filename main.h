@@ -10,7 +10,7 @@ void stringWriter(char *c, int *sum);
 void stringExactWriter(char *c, int *sum);
 void reverseString(char* str, int len);
 int countDigits(long int x, unsigned int base);
-char *convertNumber(long int x);
+char *convertNumber(int x);
 char *convertUnsignedNum(long int x);
 char *convertToOct(long int x);
 char *convertToHex(long int x, int upper);

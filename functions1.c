@@ -7,22 +7,21 @@
  *
  * Return: string representing x
  */
-char *convertNumber(long int x)
+char *convertNumber(int x)
 {
 	char *c;
 	int negative = 0;
-	const long int zero = 0;
 
-	if (x == zero)
+	if (x == 0)
 		return (char *) '0';
 
-	if (x < zero)
+	if (x < 0)
 	{
-		x = (unsigned long int) (-x);
+		x -= 1;
 		negative = 1;
 	}
 
-	c = convertUnsignedNum(x);
+	c = convertUnsignedNum((long int)x);
 
 	if (negative)
 		c[0] = '-';
