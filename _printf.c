@@ -72,12 +72,6 @@ int _printf(const char *format, ...)
 				_putchar(*c);
 				sum += 2;
 		}
-		while (get_flag(c, &par))
-		{
-			c++;
-		}
-		if (get_modif(c, &par))
-			c++;
 	}
 
 	va_end(ap);
@@ -111,62 +105,13 @@ void stringWriter(char *c, int *sum)
  */
 void stringExactWriter(char *c, int *sum)
 {
-	char *c;
-	int i = 0, negative = 0, temp;
-
-	if (x == 0)
-		return ((char *) '0');
-
-	if (x < 0)
-	{
-		negative = 1;
-		x *= -1;
-	}
-
-	temp = x;
-
-	while (temp > 0)
-	{
-		temp /= 10;
-		i++;
-	}
-
-	c = malloc(sizeof(char) * (i + negative + 1));
-
-	i = 0;
-	while (x > 0)
-	{
-		c[i++] = (x % 10) + '0';
-		x /= 10;
-	}
 	char *x = "\\x";
 
 	while (!*c)
 		c++;
+
 	for (; *c != '\0'; c++)
 	{
-		c[i++] = '-';
-	}
-
-	reverseString(c, i);
-	return (c);
-}
-
-/**
- * reverseString -reverses a given string
- * @str: pointer to a string
- * @len: length of the given string
- */
-void reverseString(char *str, int len)
-{
-	int i;
-	char temp;
-
-	for (i = 0; i < len / 2; i++)
-	{
-		temp = str[i];
-		str[i] = str[len - i - 1];
-		str[len - i - 1] = temp;
 		if ((*c < 32) || (*c >= 127))
 		{
 			stringWriter(x, sum);
