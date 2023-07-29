@@ -167,7 +167,4 @@ char *convertToHex(long int x, int upper)
 
 	return (c);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e999029d822b5d02c4035e77f71f7c1507fff33

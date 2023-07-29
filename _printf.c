@@ -64,17 +64,8 @@ int _printf(const char *format, ...)
 				stringExactWriter(va_arg(ap, char *), &sum);
 				break;
 			case 'p':
-<<<<<<< HEAD
-<<<<<<< HEAD
-				stringWriter(convertToHex(va_arg(ap, int), 1), &sum);
-=======
-				stringWriter("0x", &sum);
-				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
->>>>>>> d69a21d72c5bae70de3cb72d143ff19b2af950a5
-=======
 				stringWriter("0x", &sum);
 				stringWriter(convertToHex(va_arg(ap, long int), 0), &sum);
->>>>>>> 0e999029d822b5d02c4035e77f71f7c1507fff33
 				break;
 			default:
 				_putchar(*start);
@@ -120,7 +111,6 @@ void stringWriter(char *c, int *sum)
  */
 void stringExactWriter(char *c, int *sum)
 {
-<<<<<<< HEAD
 	char *c;
 	int i = 0, negative = 0, temp;
 
@@ -149,16 +139,12 @@ void stringExactWriter(char *c, int *sum)
 		c[i++] = (x % 10) + '0';
 		x /= 10;
 	}
-=======
 	char *x = "\\x";
 
 	while (!*c)
 		c++;
->>>>>>> 7ecc4ba0c17a443c5b561af62ddeb0a29ac5dc35
-
 	for (; *c != '\0'; c++)
 	{
-<<<<<<< HEAD
 		c[i++] = '-';
 	}
 
@@ -181,7 +167,6 @@ void reverseString(char *str, int len)
 		temp = str[i];
 		str[i] = str[len - i - 1];
 		str[len - i - 1] = temp;
-=======
 		if ((*c < 32) || (*c >= 127))
 		{
 			stringWriter(x, sum);
@@ -191,6 +176,5 @@ void reverseString(char *str, int len)
 
 		_putchar(*c);
 		*sum += 1;
->>>>>>> 7ecc4ba0c17a443c5b561af62ddeb0a29ac5dc35
 	}
 }
