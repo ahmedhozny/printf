@@ -45,6 +45,9 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				sum++;
 				break;
+			case 'b':
+				stringWriter(convertToBin(va_arg(ap, unsigned int)), &sum);
+				break;
 			case 'u':
 				stringWriter(convertUnsignedNum(va_arg(ap, unsigned int)), &sum);
 				break;
@@ -61,7 +64,12 @@ int _printf(const char *format, ...)
 				stringExactWriter(va_arg(ap, char *), &sum);
 				break;
 			case 'p':
+<<<<<<< HEAD
 				stringWriter(convertToHex(va_arg(ap, int), 1), &sum);
+=======
+				stringWriter("0x", &sum);
+				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
+>>>>>>> d69a21d72c5bae70de3cb72d143ff19b2af950a5
 				break;
 			default:
 				_putchar(*start);

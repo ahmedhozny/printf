@@ -50,5 +50,10 @@ char *convertNumber(int x);
 char *convertUnsignedNum(unsigned int x);
 char *convertToOct(unsigned int x);
 char *convertToHex(unsigned int x, int upper);
+<<<<<<< HEAD
 >>>>>>> 7ecc4ba0c17a443c5b561af62ddeb0a29ac5dc35
+=======
+char *convertToBin(unsigned int x);
+
+>>>>>>> d69a21d72c5bae70de3cb72d143ff19b2af950a5
 #endif

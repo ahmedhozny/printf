@@ -87,6 +87,32 @@ void reverseString(char* str, int len) {
 	}
 }
 
+char *convertToBin(unsigned int x)
+{
+	char *c;
+	int i, n;
+
+	if (x == 0)
+		return (char *) '0';
+
+	n = countDigits(x, 2);
+
+	c = malloc(sizeof(char) * (n));
+	if (!c)
+	{
+		free(c);
+		return (0);
+	}
+
+	for (i = 0; i <= n; i++)
+	{
+		c[n - i - 1] = (x % 2) + '0';
+		x /= 2;
+	}
+
+	return (c);
+}
+
 char *convertToOct(unsigned int x)
 {
 	char *c;
