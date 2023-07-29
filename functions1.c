@@ -7,18 +7,19 @@
  *
  * Return: string representing x
  */
-char *convertNumber(int x)
+char *convertNumber(long int x)
 {
 	char *c;
 	int negative = 0;
+	const long int zero = 0;
 
-	if (x == 0)
+	if (x == zero)
 		return (char *) '0';
 
-	if (x < 0)
+	if (x < zero)
 	{
+		x = (unsigned long int) (-x);
 		negative = 1;
-		x *= -1;
 	}
 
 	c = convertUnsignedNum(x);
@@ -29,7 +30,7 @@ char *convertNumber(int x)
 	return (c);
 }
 
-char *convertUnsignedNum(unsigned int x)
+char *convertUnsignedNum(long int x)
 {
 	char *c;
 	int i, n;
@@ -55,7 +56,7 @@ char *convertUnsignedNum(unsigned int x)
 	return (c);
 }
 
-int countDigits(unsigned int x, unsigned int base)
+int countDigits(long int x, unsigned int base)
 {
 	int i = 0;
 
@@ -64,7 +65,7 @@ int countDigits(unsigned int x, unsigned int base)
 
 	while (x > 0)
 	{
-		x /= base;
+		x /= (long) base;
 		i++;
 	}
 
@@ -87,7 +88,7 @@ void reverseString(char* str, int len) {
 	}
 }
 
-char *convertToBin(unsigned int x)
+char *convertToBin(long int x)
 {
 	char *c;
 	int i, n;
@@ -113,7 +114,7 @@ char *convertToBin(unsigned int x)
 	return (c);
 }
 
-char *convertToOct(unsigned int x)
+char *convertToOct(long int x)
 {
 	char *c;
 	int i, n;
@@ -139,7 +140,7 @@ char *convertToOct(unsigned int x)
 	return (c);
 }
 
-char *convertToHex(unsigned int x, int upper)
+char *convertToHex(long int x, int upper)
 {
 	char *c;
 	int i, n;
@@ -162,32 +163,6 @@ char *convertToHex(unsigned int x, int upper)
 		c[n - i] = (x % 16) > 9 ? (x % 16) + upper : (x % 16) + '0';
 		x /= 16;
 	}
-
-	return (c);
-}
-
-char *convertAddress(unsigned int x)
-{
-	char *c, *h;
-	unsigned int i, n;
-
-	n = countDigits(x, 16);
-
-	c = malloc(sizeof(char) * (2 + n));
-	if (!c)
-	{
-		free(c);
-		return (0);
-	}
-
-	i = 0;
-	c[i++] = '0';
-	c[i++] = 'x';
-
-	h = convertToHex(x, 1);
-
-	for (; i < n + 2; i++)
-		c[i] = h[i - 2];
 
 	return (c);
 }

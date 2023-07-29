@@ -39,32 +39,33 @@ int _printf(const char *format, ...)
 				break;
 			case 'i':
 			case 'd':
-				stringWriter(convertNumber(va_arg(ap, int)), &sum);
+				stringWriter(convertNumber(va_arg(ap, long int)), &sum);
 				break;
 			case '%':
 				_putchar('%');
 				sum++;
 				break;
 			case 'b':
-				stringWriter(convertToBin(va_arg(ap, unsigned int)), &sum);
+				stringWriter(convertToBin(va_arg(ap, long int)), &sum);
 				break;
 			case 'u':
-				stringWriter(convertUnsignedNum(va_arg(ap, unsigned int)), &sum);
+				stringWriter(convertUnsignedNum(va_arg(ap, long int)), &sum);
 				break;
 			case 'o':
-				stringWriter(convertToOct(va_arg(ap, unsigned int)), &sum);
+				stringWriter(convertToOct(va_arg(ap, long int)), &sum);
 				break;
 			case 'x':
-				stringWriter(convertToHex(va_arg(ap, unsigned int), 0), &sum);
+				stringWriter(convertToHex(va_arg(ap, long int), 0), &sum);
 				break;
 			case 'X':
-				stringWriter(convertToHex(va_arg(ap, unsigned int), 1), &sum);
+				stringWriter(convertToHex(va_arg(ap, long int), 1), &sum);
 				break;
 			case 'S':
 				stringExactWriter(va_arg(ap, char *), &sum);
 				break;
 			case 'p':
-				stringWriter(convertAddress(va_arg(ap, unsigned int)), &sum);
+				stringWriter("0x", &sum);
+				stringWriter(convertToHex(va_arg(ap, long int), 0), &sum);
 				break;
 			default:
 				_putchar(*start);
