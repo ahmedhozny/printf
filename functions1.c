@@ -17,11 +17,11 @@ char *convertNumber(int x)
 
 	if (x < 0)
 	{
+		x -= 1;
 		negative = 1;
-		x *= -1;
 	}
 
-	c = convertUnsignedNum(x);
+	c = convertUnsignedNum((long int) x);
 
 	if (negative)
 		c[0] = '-';
@@ -29,7 +29,7 @@ char *convertNumber(int x)
 	return (c);
 }
 
-char *convertUnsignedNum(unsigned int x)
+char *convertUnsignedNum(long int x)
 {
 	char *c;
 	int i, n;
@@ -55,7 +55,7 @@ char *convertUnsignedNum(unsigned int x)
 	return (c);
 }
 
-int countDigits(unsigned int x, unsigned int base)
+int countDigits(long int x, unsigned int base)
 {
 	int i = 0;
 
@@ -64,7 +64,7 @@ int countDigits(unsigned int x, unsigned int base)
 
 	while (x > 0)
 	{
-		x /= base;
+		x /= (long) base;
 		i++;
 	}
 
@@ -76,24 +76,26 @@ int countDigits(unsigned int x, unsigned int base)
  * @str: pointer to a string
  * @len: length of the given string
  */
-void reverseString(char* str, int len) {
+void reverseString(char* str, int len)
+{
 	int i;
 	char temp;
 
-	for (i = 0; i < len / 2; i++) {
+	for (i = 0; i < len / 2; i++)
+	{
 		temp = str[i];
 		str[i] = str[len - i - 1];
 		str[len - i - 1] = temp;
 	}
 }
 
-char *convertToBin(unsigned int x)
+char *convertToBin(long int x)
 {
 	char *c;
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	n = countDigits(x, 2);
 
@@ -113,13 +115,13 @@ char *convertToBin(unsigned int x)
 	return (c);
 }
 
-char *convertToOct(unsigned int x)
+char *convertToOct(long int x)
 {
 	char *c;
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	n = countDigits(x, 8);
 
@@ -139,13 +141,13 @@ char *convertToOct(unsigned int x)
 	return (c);
 }
 
-char *convertToHex(unsigned int x, int upper)
+char *convertToHex(long int x, int upper)
 {
 	char *c;
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	upper = upper ? 55 : 87;
 	n = countDigits(x, 16);
@@ -165,4 +167,7 @@ char *convertToHex(unsigned int x, int upper)
 
 	return (c);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e999029d822b5d02c4035e77f71f7c1507fff33
