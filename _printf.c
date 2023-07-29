@@ -85,6 +85,9 @@ int _printf(const char *format, ...)
  */
 void stringWriter(char *c, int *sum)
 {
+	if (!c)
+		stringWriter("(null)", sum);
+
 	while (!*c)
 		c++;
 

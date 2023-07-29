@@ -21,7 +21,7 @@ char *convertNumber(int x)
 		negative = 1;
 	}
 
-	c = convertUnsignedNum((long int)x);
+	c = convertUnsignedNum((long int) x);
 
 	if (negative)
 		c[0] = '-';
@@ -76,11 +76,13 @@ int countDigits(long int x, unsigned int base)
  * @str: pointer to a string
  * @len: length of the given string
  */
-void reverseString(char* str, int len) {
+void reverseString(char* str, int len)
+{
 	int i;
 	char temp;
 
-	for (i = 0; i < len / 2; i++) {
+	for (i = 0; i < len / 2; i++)
+	{
 		temp = str[i];
 		str[i] = str[len - i - 1];
 		str[len - i - 1] = temp;
@@ -93,7 +95,7 @@ char *convertToBin(long int x)
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	n = countDigits(x, 2);
 
@@ -119,7 +121,7 @@ char *convertToOct(long int x)
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	n = countDigits(x, 8);
 
@@ -145,7 +147,7 @@ char *convertToHex(long int x, int upper)
 	int i, n;
 
 	if (x == 0)
-		return (char *) '0';
+		return ((char *) '0');
 
 	upper = upper ? 55 : 87;
 	n = countDigits(x, 16);
